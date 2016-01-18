@@ -5,19 +5,19 @@ var vhost = require('vhost');
 var ja = express();
 ja.use(express.static(path.join(__dirname, "jo.hnanthony.com")));
 ja.use(function(req, res) {
-	res.send('404: Page not Found', 404);
+	res.status(404).send('404: Page not Found');
 });
 ja.use(function(error, req, res, next) {
-	res.send('500: Internal Server Error', 500);
+	res.status(500).send('500: Internal Server Error');
 });
 
 var ks = express();
 ks.use(express.static(path.join(__dirname, "kieransanderson.xyz")));
 ks.use(function(req, res) {
-	res.send('404: Page not Found', 404);
+	res.status(404).send('404: Page not Found');
 });
 ks.use(function(error, req, res, next) {
-	res.send('500: Internal Server Error', 500);
+	res.status(500).send('500: Internal Server Error');
 });
 
 var app = express();
