@@ -1,9 +1,11 @@
+var compress = require('compression');
 var express = require('express');
 var path = require('path');
 var vhost = require('vhost');
 
 var ja = express();
 ja.use(express.static(path.join(__dirname, "jo.hnanthony.com")));
+ja.use(compress());
 ja.use(function(req, res) {
 	res.status(404).send('404: Page not Found');
 });
@@ -13,6 +15,7 @@ ja.use(function(error, req, res, next) {
 
 var ks = express();
 ks.use(express.static(path.join(__dirname, "kieransanderson.xyz")));
+ks.use(compress());
 ks.use(function(req, res) {
 	res.status(404).send('404: Page not Found');
 });

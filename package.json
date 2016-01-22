@@ -9,6 +9,7 @@
   "author": "",
   "license": "BSD-2-Clause",
   "dependencies": {
+    "compression": "^1.6.1",
     "express": "~4.13.3",
     "vhost": "~3.0.2"
   }
