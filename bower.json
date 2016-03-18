@@ -1,0 +1,21 @@
+{
+  "name": "jo.hnanthony.com",
+  "description": "",
+  "main": "root.coffee",
+  "authors": [
+    "John Anthony <john@jo.hnanthony.com>"
+  ],
+  "license": "GPL",
+  "homepage": "http://jo.hnanthony.com",
+  "moduleType": [],
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "fullpage.js": "^2.7.8"
+  }
+}
