@@ -1,0 +1,22 @@
+doctype html
+html(lang='en')
+	head
+		title Jo.hnAnthony.com
+		link(rel='stylesheet', type='text/css', href='fullpage/jquery.fullpage.css')
+	body
+		div#fullpage
+			div.section
+				h1 Hello, world!
+			div.section
+				h1 Page 2
+			div.section
+				h1 Page 3
+
+		script(type='text/javascript', src='js/jquery.min.js')
+		script(type='text/javascript', src='js/jquery-ui.min.js')
+		script(type='text/javascript', src='fullpage/jquery.fullpage.min.js')
+		script(type='text/javascript', src='fullpage/jquery.fullpage.min.js')
+		script(type='text/javascript').
+			$(document).ready(function() {
+				$('#fullpage').fullpage();
+			});

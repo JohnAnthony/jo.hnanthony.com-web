@@ -16,6 +16,7 @@
     "tests"
   ],
   "dependencies": {
-    "fullpage.js": "^2.7.8"
+    "fullpage.js": "^2.7.8",
+    "jquery-ui": "^1.11.4"
   }
 }
