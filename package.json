@@ -2,7 +2,7 @@
   "name": "node-www",
   "version": "0.0.0",
   "description": "",
-  "main": "root.js",
+  "main": "server.coffee",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
@@ -10,7 +10,6 @@
   "license": "BSD-2-Clause",
   "dependencies": {
     "compression": "^1.6.1",
-    "express": "~4.13.3",
-    "vhost": "~3.0.2"
+    "express": "~4.13.3"
   }
 }
