@@ -1,3 +1,4 @@
-FROM nginx
+FROM nginx:alpine
 MAINTAINER John Anthony
-COPY dist /usr/share/nginx/html
+COPY bg.png /usr/share/nginx/html
+COPY index.html /usr/share/nginx/html
