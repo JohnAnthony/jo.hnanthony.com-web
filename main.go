@@ -3,13 +3,15 @@
 package main
 
 import (
-	"github.com/gin-gonic/gin"
 	"log"
+	"time"
+
+	"github.com/gin-contrib/cache"
+	"github.com/gin-contrib/cache/persistence"
+	"github.com/gin-gonic/gin"
 )
 
 func main() {
-	r := gin.Default()
-
 	index, err := Asset("static/index.html")
 	if err != nil {
 		log.Fatal(err)
@@ -20,11 +22,14 @@ func main() {
 		log.Fatal(err)
 	}
 
-	r.GET("/", func(c *gin.Context) {
+	store := persistence.NewInMemoryStore(999999 * time.Hour)
+
+	r := gin.Default()
+	r.GET("/", cache.CachePage(store, 999999*time.Hour, func(c *gin.Context) {
 		c.Writer.Write(index)
-	})
-	r.GET("/bg.png", func(c *gin.Context) {
+	}))
+	r.GET("/bg.png", cache.CachePage(store, 999999*time.Hour, func(c *gin.Context) {
 		c.Writer.Write(bg)
-	})
+	}))
 	r.Run()
 }
