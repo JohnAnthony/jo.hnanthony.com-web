@@ -7,19 +7,23 @@
 		body, html { padding: 0px; margin: 0px; height: 100%; }
 
 		html {
-			background: linear-gradient(0, #323232, rgba(255, 255, 255, 0), #323232), url('bg.png'), #323232;
+			background:
+				linear-gradient(0, #323232, rgba(255, 255, 255, 0), #323232),
+			url('data:image/png;base64,{{.BG}}'),
+				#323232;
 			background-repeat: no-repeat;
 			background-size: cover;
 		}
 
 		body {
 			font-family: 'Abel', Verdana, sans-serif;
-			background: linear-gradient(0, #323232, rgba(255, 255, 255, 0), #323232);
+			background:
+				linear-gradient(0, #323232, rgba(255, 255, 255, 0), #323232);
 			font-size: 14px;
 			color: #fbb700;
 			padding: 0px;
 			height: 100%;
-			display: none;
+			display: flex;
 			flex-wrap: nowrap;
 			justify-content: center;
 			align-items: center;
@@ -50,13 +54,4 @@
 		<li><a href="https://gitlab.com/JohnAnthony">@Gitlab</a></li>
 		<li><a href="https://github.com/JohnAnthony">@Github</a></li>
 	</ul>
-
-	<script>
-		Promise.all([
-			fetch('bg.png'),
-			fetch('https://fonts.googleapis.com/css?family=Abel'),
-		]).then(function() {
-			document.body.style.display = 'flex';
-		});
-	</script>
 </body>
