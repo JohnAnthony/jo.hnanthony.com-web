@@ -4,6 +4,7 @@ package main
 
 import (
 	"bytes"
+	"crypto/sha512"
 	"encoding/base64"
 	"html/template"
 	"log"
@@ -41,15 +42,27 @@ func buildBody() ([]byte, error) {
 	return buf.Bytes(), nil
 }
 
+func buildEtag(body *[]byte) string {
+	hasher := sha512.New()
+	hasher.Write(*body)
+	return base64.StdEncoding.EncodeToString(hasher.Sum(nil))
+}
+
 func main() {
 	body, err := buildBody()
 	if err != nil {
 		log.Fatal(err)
 	}
+	etag := buildEtag(&body)
 
 	r := gin.Default()
 	r.GET("/", func(c *gin.Context) {
-		c.Writer.Write(body)
+		if c.GetHeader("If-None-Match") == etag {
+			c.AbortWithStatus(304)
+			return
+		}
+		c.Header("ETag", etag)
+		c.Data(200, "text/html", body)
 	})
 	r.Run()
 }
