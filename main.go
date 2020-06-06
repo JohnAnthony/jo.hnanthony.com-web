@@ -55,14 +55,22 @@ func main() {
 	}
 	etag := buildEtag(&body)
 
-	r := gin.Default()
-	r.GET("/", func(c *gin.Context) {
+	attachHeaders := func(c *gin.Context) {
+		c.Header("ETag", etag)
 		if c.GetHeader("If-None-Match") == etag {
 			c.AbortWithStatus(304)
 			return
 		}
-		c.Header("ETag", etag)
+	}
+
+	r := gin.Default()
+	r.GET("/", func(c *gin.Context) {
+		attachHeaders(c)
 		c.Data(200, "text/html", body)
+	})
+	r.HEAD("/", func(c *gin.Context) {
+		attachHeaders(c)
+		c.Data(200, "text/html", []byte{})
 	})
 	r.Run()
 }
