@@ -9,7 +9,6 @@ import (
 	"html/template"
 	"log"
 
-	"github.com/gin-gonic/autotls"
 	"github.com/gin-gonic/gin"
 )
 
@@ -73,6 +72,5 @@ func main() {
 		attachHeaders(c)
 		c.Data(200, "text/html", []byte{})
 	})
-
-	log.Fatal(autotls.Run(r, "jo.hnanthony.com"))
+	r.Run()
 }
