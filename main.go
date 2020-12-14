@@ -74,5 +74,5 @@ func main() {
 		c.Data(200, "text/html", []byte{})
 	})
 
-	autotls.Run(r, "jo.hnanthony.com")
+	log.Fatal(autotls.Run(r, "jo.hnanthony.com"))
 }
