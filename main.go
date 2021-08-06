@@ -8,6 +8,7 @@ import (
 	"log"
 
 	fiber "github.com/gofiber/fiber/v2"
+	"github.com/gofiber/fiber/v2/middleware/logger"
 )
 
 //go:embed static/bg.png
@@ -43,7 +44,11 @@ func main() {
 		log.Fatal(err)
 	}
 
-	r := fiber.New()
+	r := fiber.New(fiber.Config{
+		GETOnly:          true,
+		DisableKeepalive: true,
+	})
+	r.Use(logger.New())
 	r.Get("/", func(c *fiber.Ctx) error {
 		return c.Type("html").Send(body)
 	})
