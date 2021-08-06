@@ -1,9 +1,8 @@
-//go:generate go-bindata -o static.go static/...
-
 package main
 
 import (
 	"bytes"
+	_ "embed"
 	"encoding/base64"
 	"html/template"
 	"log"
@@ -11,12 +10,13 @@ import (
 	fiber "github.com/gofiber/fiber/v2"
 )
 
-func buildBody() ([]byte, error) {
-	bg, err := Asset("static/bg.png")
-	if err != nil {
-		return []byte{}, err
-	}
+//go:embed static/bg.png
+var bg []byte
 
+//go:embed static/index.html.template
+var indexTemplate string
+
+func buildBody() ([]byte, error) {
 	templateVars := struct {
 		BG string
 	}{
@@ -25,11 +25,7 @@ func buildBody() ([]byte, error) {
 
 	var ret []byte
 	buf := bytes.NewBuffer(ret)
-	index, err := Asset("static/index.html.template")
-	if err != nil {
-		return []byte{}, err
-	}
-	tmpl, err := template.New("index").Parse(string(index))
+	tmpl, err := template.New("index").Parse(indexTemplate)
 	if err != nil {
 		return []byte{}, err
 	}
