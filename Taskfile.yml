@@ -1,0 +1,11 @@
+version: '3'
+
+vars:
+  TAG: europe-west1-docker.pkg.dev/websites-298811/johnanthonycom/website
+
+tasks:
+  default:
+    cmd: { task: build }
+  build: docker build . -t {{.TAG}}
+  serve: echo TODO
+  push: docker push {{.TAG}}
