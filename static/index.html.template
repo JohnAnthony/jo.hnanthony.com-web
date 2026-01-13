@@ -27,6 +27,7 @@
 			flex-wrap: nowrap;
 			justify-content: center;
 			align-items: center;
+			flex-direction: column;
 		}
 
 		a {
@@ -40,18 +41,31 @@
 		.John { color: #f76504; }
 		.Anthony { color: #fbb700; }
 		.John, .Anthony { font-size: 80px; }
-		.John, .Anthony, .Links {
+		.John, .Anthony, .links {
 			font-weight: bold;
 			text-transform: uppercase;
+			text-align: right;
+		}
+		.links {
+			display: flex;
+			flex-direction: row;
+			width: 500px;
+			justify-content: space-around;
+			padding: 0px;
+			margin: 0px;
 		}
 	</style>
 </head>
 <body>
-	<span class="John">John</span>
-	<span class="Anthony">&nbsp;Anthony</span>
-	<ul class="Links">
+	<div>
+		<span class="John">John</span>
+		<span class="Anthony">&nbsp;Anthony</span>
+	</div>
+	<ul class="links">
 		<li><a href="mailto:john@jo.hnanthony.com">Email Me</a></li>
 		<li><a href="https://gitlab.com/JohnAnthony">@Gitlab</a></li>
 		<li><a href="https://github.com/JohnAnthony">@Github</a></li>
+		<li><a href="https://www.norwichgames.uk">Norwich Games Con</a></li>
+		<li><a href="https://pkgs.alpinelinux.org/packages?branch=edge&maintainer=John%20Anthony">Alpine Linux</a></li>
 	</ul>
 </body>
